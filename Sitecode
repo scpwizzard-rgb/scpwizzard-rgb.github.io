@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coguard Domain Resource</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 15vh auto;
+      padding: 24px;
+      background-color: #020617;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+    .subtitle {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- [heading] -->
+    <h1>Coguard Domain Resource</h1>
+
+    <!-- [subtitle] Not used -->
+    <p class="subtitle">Not used</p>
+
+    <!-- [normal text] -->
+    <p>Sorry, but this website is not done at this time. Please check later.</p>
+  </div>
+</body>
+</html>
