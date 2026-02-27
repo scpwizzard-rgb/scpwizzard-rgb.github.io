@@ -129,11 +129,18 @@ body {
     margin-bottom: 5px;
 }
 
-.redacted {
-    background: #b30000;
-    color: #b30000;
-    padding: 0 4px;
-    border-radius: 2px;
+/* Image / monitor frames */
+.image-frame {
+    width: 100%;
+    height: 80px;
+    background: #050505;
+    border: 1px solid #333;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #777;
 }
 
 /* ===== CENTER CONTENT ===== */
@@ -228,7 +235,15 @@ body {
     font-size: 12px;
 }
 
-/* Faux terminal (interactive now) */
+/* Wide document sections */
+.doc-block {
+    border: 1px solid #333;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* Faux terminal (interactive) */
 .terminal-frame {
     margin-top: 10px;
     border: 1px solid #333;
@@ -237,7 +252,7 @@ body {
     font-family: Consolas, monospace;
     font-size: 12px;
     color: #00ff99;
-    height: 180px;
+    height: 200px;
     overflow-y: auto;
 }
 
@@ -305,13 +320,19 @@ body {
         <div class="nav-section">
             <div class="nav-label">Internal</div>
             <span class="nav-link">Terminal Hub</span>
-            <span class="nav-link"><span class="redacted">████████</span></span>
+            <span class="nav-link">Control Node</span>
         </div>
 
         <div class="nav-section">
             <div class="nav-label">Status</div>
             <span class="nav-link">UI: Stable</span>
             <span class="nav-link">Mode: Fictional</span>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-label">Quick Info</div>
+            <span class="nav-link">Revision: 3.1.3</span>
+            <span class="nav-link">Host: GitHub Pages</span>
         </div>
     </div>
 
@@ -322,7 +343,7 @@ body {
             <div class="scp-code">COGUARD CONTROL NODE</div>
             <div class="scp-class">Interface Classification: INTERNAL / FICTIONAL</div>
             <div class="scp-meta">
-                Document Type: UI Overview • Revision: 3.1.3 • Access Level: <span class="redacted">██</span>
+                Document Type: UI Overview • Revision: 3.1.3 • Access Level: INTERNAL
             </div>
         </div>
 
@@ -330,6 +351,7 @@ body {
         <div class="tab-bar">
             <div class="tab active" data-tab="overview">Overview</div>
             <div class="tab" data-tab="systems">Systems</div>
+            <div class="tab" data-tab="visual">Visual Feeds</div>
             <div class="tab" data-tab="terminal">Terminal View</div>
         </div>
 
@@ -338,7 +360,7 @@ body {
             <div class="section-title">Description</div>
             <p>
                 The Coguard Interface is a fictional control hub designed as a clean, SCP‑style dashboard.
-                All elements on this page are purely visual and for creative purposes only.
+                It centralizes navigation, status, and a command panel for a student‑made project.
             </p>
 
             <div class="section-title">Summary</div>
@@ -347,12 +369,12 @@ body {
                     <strong>Core Status:</strong><br>
                     ONLINE<br>
                     UI Modules: ACTIVE<br>
-                    Redaction Layer: ENABLED
+                    Redaction Layer: ENABLED (visual only)
                 </div>
                 <div class="info-box">
                     <strong>Access Notes:</strong><br>
-                    Clearance: <span class="redacted">██</span><br>
-                    Scope: Student Project<br>
+                    Clearance: Internal<br>
+                    Scope: School / Personal Project<br>
                     Risk: None (Fictional)
                 </div>
             </div>
@@ -370,8 +392,17 @@ body {
                     index.html (Home)<br>
                     about.html (About)<br>
                     services.html (Services)<br>
-                    contact.html (Contact)
+                    contact.html (Contact)<br>
+                    terminal.html (Control Hub)
                 </div>
+            </div>
+
+            <div class="section-title">Capabilities</div>
+            <div class="doc-block">
+                <strong>Navigation:</strong> Direct links to all public pages.<br>
+                <strong>Status:</strong> Displays UI integrity and session info.<br>
+                <strong>Command Panel:</strong> Responds to typed commands with real site information.<br>
+                <strong>Visual Layout:</strong> Mimics SCP‑style documents and dashboards while staying safe and fictional.
             </div>
         </div>
 
@@ -393,19 +424,56 @@ body {
                 </div>
             </div>
 
-            <div class="section-title">Redaction Profile</div>
-            <p>
-                Certain labels and identifiers are intentionally obscured using redaction blocks
-                (<span class="redacted">████</span>) to reinforce the SCP‑style aesthetic while keeping
-                all content safe and fictional.
+            <div class="section-title">Changelog</div>
+            <div class="doc-block">
+                <strong>v3.1.3</strong> — Added interactive command panel and expanded UI detail.<br>
+                <strong>v3.1.2</strong> — Refined SCP‑style layout, added right‑side panels and visual frames.<br>
+                <strong>v3.1.1</strong> — Established dashboard + document hybrid structure.<br>
+            </div>
+
+            <div class="section-title">Safety Notice</div>
+            <div class="doc-block">
+                All content on this interface is fictional and for creative purposes only.  
+                No real systems, threats, or monitoring are represented here.  
+                This page is safe to view in a school environment and is intended as a styled UI project.
+            </div>
+        </div>
+
+        <!-- TAB: VISUAL FEEDS -->
+        <div class="tab-content" id="tab-visual">
+            <div class="section-title">Visual Panels</div>
+            <p style="font-size:12px; color:#bbb; margin-bottom:6px;">
+                These frames represent fictional camera feeds or UI panels.  
+                You can later replace them with real images by setting <code>&lt;img&gt;</code> sources.
             </p>
 
-            <div class="section-title">Changelog</div>
-            <ul style="font-size:12px; margin-top:5px;">
-                <li>v3.1.3 — Added interactive command panel.</li>
-                <li>v3.1.2 — Refined SCP‑style layout and panels.</li>
-                <li>v3.1.1 — Established dashboard + document hybrid.</li>
-            </ul>
+            <div class="info-grid">
+                <div class="info-box">
+                    <strong>Panel A — Overview</strong>
+                    <div class="image-frame">IMAGE / DASHBOARD PLACEHOLDER</div>
+                </div>
+                <div class="info-box">
+                    <strong>Panel B — Map / Layout</strong>
+                    <div class="image-frame">IMAGE / MAP PLACEHOLDER</div>
+                </div>
+            </div>
+
+            <div class="info-grid" style="margin-top:10px;">
+                <div class="info-box">
+                    <strong>Panel C — Logo / Branding</strong>
+                    <div class="image-frame">IMAGE / LOGO PLACEHOLDER</div>
+                </div>
+                <div class="info-box">
+                    <strong>Panel D — Status Board</strong>
+                    <div class="image-frame">IMAGE / STATUS PLACEHOLDER</div>
+                </div>
+            </div>
+
+            <div class="section-title">Usage</div>
+            <div class="doc-block">
+                To add real images later, replace each <code>div.image-frame</code> with an
+                <code>&lt;img src="your-image.png" alt="Description"&gt;</code> tag while keeping the SCP‑style layout.
+            </div>
         </div>
 
         <!-- TAB: TERMINAL VIEW -->
@@ -430,7 +498,7 @@ body {
     <div class="right-panel">
         <div class="panel-block">
             <div class="panel-title">Session Info</div>
-            User: <span class="redacted">██████</span><br>
+            User: Coguard Operator<br>
             Node: COGUARD‑TERM<br>
             Mode: INTERACTIVE VIEW<br>
         </div>
@@ -458,6 +526,14 @@ body {
         </div>
 
         <div class="panel-block">
+            <div class="panel-title">Visual Feed Status</div>
+            Panel A: ONLINE<br>
+            Panel B: ONLINE<br>
+            Panel C: STANDBY<br>
+            Panel D: STANDBY<br>
+        </div>
+
+        <div class="panel-block">
             <div class="panel-title">Notes</div>
             This page is intentionally designed to resemble an SCP‑style control/document interface
             while remaining safe, static, and purely fictional.
@@ -478,6 +554,7 @@ const tabs = document.querySelectorAll(".tab");
 const contents = {
     overview: document.getElementById("tab-overview"),
     systems: document.getElementById("tab-systems"),
+    visual: document.getElementById("tab-visual"),
     terminal: document.getElementById("tab-terminal")
 };
 
@@ -502,12 +579,13 @@ function tPrint(text) {
 }
 
 function handleCommand(cmdRaw) {
-    const cmd = cmdRaw.trim().toLowerCase();
+    const cmd = cmdRaw.trim();
+    const lower = cmd.toLowerCase();
     if (!cmd) return;
 
     tPrint("&gt; " + cmdRaw);
 
-    if (cmd === "help") {
+    if (lower === "help") {
         tPrint("AVAILABLE COMMANDS:");
         tPrint("- help      : list commands");
         tPrint("- links     : show site URLs");
@@ -517,29 +595,29 @@ function handleCommand(cmdRaw) {
         tPrint("- whoami    : session identity");
         tPrint("- time      : current local time");
         tPrint("- clear     : clear output");
-    } else if (cmd === "clear") {
+    } else if (lower === "clear") {
         term.innerHTML = "";
-    } else if (cmd === "status") {
+    } else if (lower === "status") {
         tPrint("CORE STATUS: ONLINE | UI MODULES: ACTIVE | MODE: FICTIONAL | RISK: NONE.");
-    } else if (cmd === "links") {
+    } else if (lower === "links") {
         tPrint("SITE LINKS:");
         tPrint("- Home     : index.html");
         tPrint("- About    : about.html");
         tPrint("- Services : services.html");
         tPrint("- Contact  : contact.html");
         tPrint("- Terminal : terminal.html");
-    } else if (cmd === "overview") {
+    } else if (lower === "overview") {
         tPrint("OVERVIEW:");
         tPrint("COGUARD INTERFACE — SCP‑STYLE DASHBOARD + DOCUMENT HYBRID.");
         tPrint("PURPOSE: FICTIONAL CONTROL HUB FOR A STUDENT PROJECT.");
-    } else if (cmd === "systems") {
+    } else if (lower === "systems") {
         tPrint("SYSTEMS:");
         tPrint("- VISUAL LAYER : SCP‑INSPIRED, DASHBOARD + DOCUMENT.");
         tPrint("- INTERACTION  : COMMAND PANEL (DISPLAY‑ONLY, NON‑HARMFUL).");
         tPrint("- HOST         : GITHUB PAGES.");
-    } else if (cmd === "whoami") {
-        tPrint("SESSION ID: COGUARD‑TERM / USER: <span class='redacted'>██████</span> / ACCESS: INTERNAL FICTIONAL.");
-    } else if (cmd === "time") {
+    } else if (lower === "whoami") {
+        tPrint("SESSION ID: COGUARD‑TERM / USER: COGUARD OPERATOR / ACCESS: INTERNAL FICTIONAL.");
+    } else if (lower === "time") {
         const now = new Date();
         tPrint("LOCAL TIME: " + now.toLocaleTimeString());
     } else {
