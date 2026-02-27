@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Coguard Staff Terminal</title>
+    <!-- This is a fictional interface for entertainment only. 
+         It does not access school systems, collect data, or perform real security functions. -->
+    <style>
+        body {
+            background: #020202;
+            color: #00ff88;
+            font-family: "Courier New", monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #050505;
+            border-bottom: 2px solid #00aa55;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        header span {
+            font-size: 11px;
+            color: #66ffbb;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        /* Terminal block */
+        #terminal {
+            background: #000000;
+            border: 2px solid #004422;
+            padding: 15px;
+            height: 220px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            box-shadow: 0 0 10px #001a0d;
+        }
+
+        #commandBar {
+            margin-top: 10px;
+        }
+
+        #commandInput {
+            width: 70%;
+            padding: 8px;
+            background: #000;
+            color: #00ff88;
+            border: 1px solid #004422;
+            font-family: "Courier New", monospace;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #004422;
+            color: #00ff88;
+            border: none;
+            cursor: pointer;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+        }
+
+        button:hover {
+            background: #007744;
+        }
+
+        /* Dashboard section */
+        .dashboard {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #050805;
+            border: 1px solid #004422;
+            padding: 12px;
+            box-shadow: 0 0 8px #001a0d;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 14px;
+            color: #66ffbb;
+        }
+
+        .status-ok {
+            color: #00ff88;
+        }
+
+        .status-warn {
+            color: #ffdd55;
+        }
+
+        .status-alert {
+            color: #ff5555;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-right: 4px;
+        }
+
+        .tag-online {
+            background: #003311;
+            color: #00ff88;
+        }
+
+        .tag-offline {
+            background: #330000;
+            color: #ff7777;
+        }
+
+        .tag-patrol {
+            background: #002233;
+            color: #66ccff;
+        }
+
+        /* Classified section */
+        .classified {
+            margin-top: 30px;
+            padding: 15px;
+            border: 2px solid #660000;
+            background: #050000;
+            box-shadow: 0 0 12px #220000;
+        }
+
+        .classified h2 {
+            margin-top: 0;
+            color: #ff5555;
+            letter-spacing: 2px;
+        }
+
+        .redacted {
+            background: #111;
+            color: #111;
+            padding: 0 4px;
+            border-radius: 2px;
+            box-shadow: 0 0 4px #330000;
+        }
+
+        .classified-label {
+            font-size: 11px;
+            color: #ff9999;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #888;
+            text-align: center;
+        }
+
+        a.back-link {
+            color: #66ffbb;
+            text-decoration: none;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>COGUARD STAFF TERMINAL</h1>
+        <span>Internal Use Only • Clearance Level 3+</span>
+    </div>
+    <div>
+        <span>NODE: RG-BETA • SESSION: ACTIVE</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- TERMINAL SECTION -->
+    <div id="terminal">
+Booting Coguard OS v3.2...
+Verifying staff token........ OK
+Loading patrol modules....... OK
+Loading incident logs........ OK
+----------------------------------------
+Type HELP to view available commands.
+    </div>
+
+    <div id="commandBar">
+        <input type="text" id="commandInput" placeholder="Enter command (HELP, STATUS, LOGS, UNITS, CLEAR, EXIT)">
+        <button onclick="runCommand()">Run</button>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div class="dashboard">
+        <div class="card">
+            <h2>System Status</h2>
+            <p><strong>Core:</strong> <span class="status-ok">ONLINE</span></p>
+            <p><strong>Patrol Mode:</strong> ACTIVE (Recess / Walk & Talk)</p>
+            <p><strong>Threat Level:</strong> <span class="status-warn">LOW – Routine Monitoring</span></p>
+        </div>
+
+        <div class="card">
+            <h2>Active Units</h2>
+            <p><span class="tag tag-online">ONLINE</span> Cohen — Perimeter / Walk & Talk</p>
+            <p><span class="tag tag-online">ONLINE</span> o — Close Guard / Recess</p>
+            <p><span class="tag tag-patrol">PATROL</span> Zone A — Playground</p>
+            <p><span class="tag tag-patrol">PATROL</span> Zone B — Morning Line</p>
+        </div>
+
+        <div class="card">
+            <h2>Recent Activity</h2>
+            <p>07:12 — Patrol shift started</p>
+            <p>07:45 — Minor disturbance observed (resolved verbally)</p>
+            <p>08:10 — Walk & Talk monitoring active</p>
+            <p>08:25 — No physical incidents reported</p>
+        </div>
+
+        <div class="card">
+            <h2>Quota / Work Notes</h2>
+            <p><strong>Policy:</strong> Light, voluntary participation only.</p>
+            <p><strong>Enforcement:</strong> <span class="status-ok">NON‑STRICT</span> (for fun, not serious).</p>
+            <p><strong>Strikes:</strong> Used playfully, never for real punishment.</p>
+            <p><strong>Priority:</strong> School work always comes first.</p>
+        </div>
+    </div>
+
+    <!-- CLASSIFIED SECTION -->
+    <div class="classified">
+        <div class="classified-label">CLEARANCE LEVEL 4 • COGUARD INTERNAL</div>
+        <h2>CLASSIFIED INCIDENT DIGEST</h2>
+        <p>
+            FILE: INCIDENT‑<span class="redacted">[REDACTED]</span><br>
+            SUMMARY: Subject reported minor conflict during recess. Coguard presence observed, 
+            no physical contact initiated, situation de‑escalated verbally.
+        </p>
+        <p>
+            NOTE: All Coguard operations are <strong>fictional / roleplay only</strong>. No real enforcement, 
+            discipline, or authority is exercised over students or staff.
+        </p>
+        <p>
+            COMPLIANCE: This interface does not connect to any school systems, does not log real data, 
+            and does not perform real security actions. It exists purely as a creative project.
+        </p>
+    </div>
+
+    <div class="footer">
+        Coguard Inc. — Fictional Bodyguard Interface • For fun and imagination only.<br>
+        <a href="staff.html" class="back-link">Return to Staff Access Page</a>
+    </div>
+
+</div>
+
+<script>
+function printToTerminal(text) {
+    const term = document.getElementById("terminal");
+    term.innerHTML += "\n" + text;
+    term.scrollTop = term.scrollHeight;
+}
+
+function runCommand() {
+    const input = document.getElementById("commandInput");
+    const cmd = input.value.trim().toLowerCase();
+    input.value = "";
+
+    if (!cmd) return;
+
+    printToTerminal("> " + cmd.toUpperCase());
+
+    switch (cmd) {
+        case "help":
+            printToTerminal("Available commands:");
+            printToTerminal("  STATUS  - Show system status");
+            printToTerminal("  LOGS    - Show recent activity logs");
+            printToTerminal("  UNITS   - Show active Coguard units");
+            printToTerminal("  CLEAR   - Clear terminal output");
+            printToTerminal("  EXIT    - Return to staff access page");
+            break;
+
+        case "status":
+            printToTerminal("System Status:");
+            printToTerminal("  Core: ONLINE");
+            printToTerminal("  Patrol Mode: ACTIVE (Recess / Walk & Talk)");
+            printToTerminal("  Threat Level: LOW – Routine Monitoring");
+            break;
+
+        case "logs":
+            printToTerminal("Recent Logs:");
+            printToTerminal("  07:12 — Patrol shift started");
+            printToTerminal("  07:45 — Minor disturbance observed (resolved verbally)");
+            printToTerminal("  08:10 — Walk & Talk monitoring active");
+            printToTerminal("  08:25 — No physical incidents reported");
+            break;
+
+        case "units":
+            printToTerminal("Active Units:");
+            printToTerminal("  Cohen — ONLINE — Perimeter / Walk & Talk");
+            printToTerminal("  o — ONLINE — Close Guard / Recess");
+            printToTerminal("  Zone A — PATROL — Playground");
+            printToTerminal("  Zone B — PATROL — Morning Line");
+            break;
+
+        case "clear":
+            document.getElementById("terminal").innerHTML =
+"Booting Coguard OS v3.2...\nVerifying staff token........ OK\nLoading patrol modules....... OK\nLoading incident logs........ OK\n----------------------------------------\nType HELP to view available commands.";
+            break;
+
+        case "exit":
+            window.location.href = "staff.html";
+            break;
+
+        default:
+            printToTerminal("Unknown command. Type HELP for a list of commands.");
+            break;
+    }
+}
+
+// Allow Enter key to run command
+document.getElementById("commandInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        runCommand();
+    }
+});
+</script>
+
+</body>
+</html>
