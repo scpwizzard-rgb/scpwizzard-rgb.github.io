@@ -2,90 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Coguard Terminal — CLASSIFIED ACCESS</title>
+<title>Coguard Terminal — Classified Access</title>
+
 <style>
     body {
-        background: #0a0a0a;
-        color: #e3e3e3;
+        background: #0b0b0b;
+        color: #e5e5e5;
         font-family: Consolas, monospace;
         margin: 0;
         padding: 0;
-        overflow-x: hidden;
     }
 
-    /* TOP CLASSIFIED BANNER */
+    /* TOP SCP BANNER */
     .banner {
         background: #8b0000;
         color: white;
-        padding: 15px;
+        padding: 18px;
         text-align: center;
         font-size: 22px;
         letter-spacing: 3px;
         border-bottom: 4px solid #300;
-        text-shadow: 0 0 8px #ff0000;
+        text-shadow: 0 0 6px #ff0000;
     }
 
-    /* SIDE PANELS */
-    .side-panel {
-        position: fixed;
-        top: 0;
+    /* DASHBOARD ROW */
+    .dashboard {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .dash-box {
         width: 260px;
-        height: 100%;
         background: #111;
-        border-right: 3px solid #550000;
-        padding: 20px;
-        box-shadow: inset 0 0 20px #000;
-    }
-
-    .side-panel.right {
-        right: 0;
-        border-right: none;
-        border-left: 3px solid #550000;
-    }
-
-    .panel-title {
-        color: #ff4444;
-        font-size: 18px;
-        margin-bottom: 10px;
-        text-shadow: 0 0 6px #ff0000;
-    }
-
-    .panel-box {
-        background: #0d0d0d;
         border: 2px solid #550000;
-        padding: 10px;
-        margin-bottom: 20px;
-        height: 120px;
-        overflow: hidden;
-        font-size: 13px;
+        padding: 15px;
+        box-shadow: 0 0 10px #200;
     }
 
-    /* TERMINAL WINDOW */
-    .terminal-container {
-        margin: 120px auto;
-        width: 60%;
-        background: #0d0d0d;
-        border: 3px solid #550000;
-        padding: 20px;
-        box-shadow: 0 0 20px #300;
-    }
-
-    .terminal-title {
+    .dash-title {
         color: #ff4444;
-        font-size: 20px;
-        margin-bottom: 10px;
-        text-shadow: 0 0 6px #ff0000;
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-shadow: 0 0 4px #ff0000;
     }
 
+    /* DOCUMENT FRAME */
+    .doc-frame {
+        width: 70%;
+        margin: 0 auto;
+        background: #0f0f0f;
+        border: 3px solid #550000;
+        padding: 25px;
+        box-shadow: 0 0 20px #200;
+    }
+
+    .doc-header {
+        font-size: 18px;
+        color: #ff4444;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #550000;
+        padding-bottom: 5px;
+    }
+
+    .redacted {
+        background: #550000;
+        color: #550000;
+        padding: 2px 6px;
+        border-radius: 3px;
+    }
+
+    /* TERMINAL */
     #terminal {
         width: 100%;
-        height: 400px;
+        height: 350px;
         background: black;
         color: #00ff99;
         padding: 10px;
         overflow-y: auto;
         border: 2px solid #222;
         font-size: 15px;
+        margin-top: 10px;
         box-shadow: inset 0 0 10px #000;
     }
 
@@ -99,80 +97,43 @@
         margin-top: 10px;
     }
 
-    /* REDACTED BLOCKS */
-    .redacted {
-        background: #550000;
-        color: #550000;
-        padding: 2px 6px;
-        border-radius: 3px;
-        margin: 0 3px;
-    }
-
-    /* GLITCH EFFECT */
-    @keyframes glitch {
-        0% { text-shadow: 2px 0 red; }
-        20% { text-shadow: -2px 0 lime; }
-        40% { text-shadow: 2px 0 red; }
-        60% { text-shadow: -2px 0 lime; }
-        80% { text-shadow: 2px 0 red; }
-        100% { text-shadow: -2px 0 lime; }
-    }
-
-    .glitch {
-        animation: glitch 0.3s infinite;
-    }
-
     /* DISCLAIMER */
     .disclaimer {
         text-align: center;
         color: #777;
         font-size: 12px;
         margin-top: 40px;
+        margin-bottom: 20px;
     }
 </style>
 </head>
+
 <body>
 
-<div class="banner glitch">C O G U A R D — F I C T I O N A L   A C C E S S   T E R M I N A L</div>
+<div class="banner">C O G U A R D — F I C T I O N A L   A C C E S S   T E R M I N A L</div>
 
-<!-- LEFT PANEL -->
-<div class="side-panel">
-    <div class="panel-title">SYSTEM STATUS</div>
-    <div class="panel-box">
-        CORE: ONLINE  
-        <br>UI MODULE: ACTIVE  
-        <br>REDaction Layer: ENABLED  
-        <br>Glitch Engine: STABLE  
+<!-- DASHBOARD -->
+<div class="dashboard">
+    <div class="dash-box">
+        <div class="dash-title">SYSTEM STATUS</div>
+        CORE: ONLINE<br>
+        UI: ACTIVE<br>
+        REDACTION: ENABLED<br>
+        MODE: FICTIONAL<br>
     </div>
 
-    <div class="panel-title">ACCESS LEVEL</div>
-    <div class="panel-box">
-        Clearance: LEVEL <span class="redacted">██</span>  
-        <br>Verification: PASS  
-        <br>Restrictions: FICTIONAL ONLY  
-    </div>
-</div>
-
-<!-- RIGHT PANEL -->
-<div class="side-panel right">
-    <div class="panel-title">MONITOR FEED</div>
-    <div class="panel-box">
-        CAM‑01: <span class="redacted">██████</span>  
-        <br>CAM‑02: <span class="redacted">██████</span>  
-        <br>CAM‑03: OFFLINE  
-    </div>
-
-    <div class="panel-title">SYSTEM LOG</div>
-    <div class="panel-box" id="logBox">
-        Initializing UI…  
-        <br>Loading fictional modules…  
-        <br>Ready.  
+    <div class="dash-box">
+        <div class="dash-title">ACCESS LEVEL</div>
+        Clearance: <span class="redacted">██</span><br>
+        Verification: PASS<br>
+        Restrictions: SAFE‑USE<br>
     </div>
 </div>
 
-<!-- TERMINAL -->
-<div class="terminal-container">
-    <div class="terminal-title">TERMINAL INPUT</div>
+<!-- DOCUMENT FRAME -->
+<div class="doc-frame">
+    <div class="doc-header">CLASSIFIED TERMINAL — DOCUMENT FRAME</div>
+
     <div id="terminal"></div>
     <input id="input" placeholder="Enter command…">
 </div>
@@ -196,12 +157,12 @@ input.addEventListener("keydown", function(e) {
         print("> " + cmd);
 
         if (cmd === "help") {
-            print("Available commands:");
+            print("Commands:");
             print("- help");
             print("- clear");
             print("- status");
             print("- redacted");
-        } 
+        }
         else if (cmd === "clear") {
             terminal.innerHTML = "";
         }
@@ -209,7 +170,7 @@ input.addEventListener("keydown", function(e) {
             print("SYSTEM STATUS: All fictional modules operational.");
         }
         else if (cmd === "redacted") {
-            print("<span class='redacted'>████████████████████</span>");
+            print("<span class='redacted'>███████████████████</span>");
         }
         else {
             print("Unknown command.");
