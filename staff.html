@@ -107,6 +107,24 @@
             font-size: 0.9em;
             border: 1px solid #444;
         }
+
+        /* Internal logs section */
+        #internalLogs {
+            display: none;
+            background: #0d0d0d;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 5px solid #ff0000;
+        }
+
+        #internalLogBox {
+            background: #000;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: "Courier New", monospace;
+            border: 1px solid #444;
+        }
     </style>
 </head>
 <body>
@@ -160,8 +178,11 @@
         <p>Provides on‑site assistance, emergency readiness, and equipment support.</p>
     </div>
 
-    <div class="warning-box">
-        <p>End of File — Unauthorized duplication or distribution is prohibited.</p>
+    <button onclick="showInternalLogs()">Proceed</button>
+
+    <div id="internalLogs">
+        <h2>Internal System Logs</h2>
+        <div id="internalLogBox"></div>
     </div>
 </div>
 
@@ -179,6 +200,12 @@ function logEvent(text) {
     logBox.scrollTop = logBox.scrollHeight;
 }
 
+function internalLog(text) {
+    const box = document.getElementById("internalLogBox");
+    box.innerHTML += "[SYSTEM] " + text + "<br>";
+    box.scrollTop = box.scrollHeight;
+}
+
 function checkCode() {
     const code = document.getElementById("accessCode").value;
     const error = document.getElementById("error");
@@ -187,6 +214,7 @@ function checkCode() {
 
     if (code === "12345") {
         logEvent("CODE ACCEPTED");
+        internalLog("User authenticated successfully.");
         document.getElementById("codeScreen").style.display = "none";
         document.getElementById("classified").style.display = "block";
     } else {
@@ -195,6 +223,7 @@ function checkCode() {
 
         error.textContent = "ACCESS DENIED — Incorrect Code";
         logEvent("INVALID CODE ENTERED");
+        internalLog("Failed login attempt #" + fails);
 
         alarm.style.display = "block";
         sound.play();
@@ -204,10 +233,15 @@ function checkCode() {
         }, 1000);
 
         if (fails >= 3) {
-            logEvent("TOO MANY FAILURES — USER EJECTED");
+            internalLog("User exceeded maximum failures. Redirecting.");
             window.location.href = "index.html";
         }
     }
+}
+
+function showInternalLogs() {
+    document.getElementById("internalLogs").style.display = "block";
+    internalLog("Internal logs accessed.");
 }
 </script>
 
