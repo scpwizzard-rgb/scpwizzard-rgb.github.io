@@ -147,6 +147,7 @@
 
 <!-- CLASSIFIED PAGE -->
 <div id="classified">
+
     <div class="scp-header">COGUARD INC. — CLASSIFIED STAFF DOSSIER</div>
 
     <div class="warning-box">
@@ -178,12 +179,15 @@
         <p>Provides on‑site assistance, emergency readiness, and equipment support.</p>
     </div>
 
-    <button onclick="showInternalLogs()">Proceed</button>
+    <!-- PROCEED BUTTON -->
+    <button onclick="showInternalLogs()" style="margin-top:20px;">Proceed</button>
 
+    <!-- INTERNAL LOGS SECTION -->
     <div id="internalLogs">
         <h2>Internal System Logs</h2>
         <div id="internalLogBox"></div>
     </div>
+
 </div>
 
 <!-- SOUND EFFECT -->
@@ -241,7 +245,7 @@ function checkCode() {
 
 function showInternalLogs() {
     document.getElementById("internalLogs").style.display = "block";
-    internalLog("Internal logs accessed.");
+    internalLog("Internal logs accessed by authenticated user.");
 }
 </script>
 
