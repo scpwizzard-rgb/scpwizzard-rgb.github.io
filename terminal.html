@@ -2,182 +2,434 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Coguard Terminal — Classified Access</title>
+<title>Coguard Interface — Classified Control Hub</title>
 
 <style>
-    body {
-        background: #0b0b0b;
-        color: #e5e5e5;
-        font-family: Consolas, monospace;
-        margin: 0;
-        padding: 0;
-    }
+/* ===== GLOBAL ===== */
+* {
+    box-sizing: border-box;
+}
 
-    /* TOP SCP BANNER */
-    .banner {
-        background: #8b0000;
-        color: white;
-        padding: 18px;
-        text-align: center;
-        font-size: 22px;
-        letter-spacing: 3px;
-        border-bottom: 4px solid #300;
-        text-shadow: 0 0 6px #ff0000;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background: #101010;
+    color: #e5e5e5;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    /* DASHBOARD ROW */
-    .dashboard {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 30px 0;
-    }
+/* ===== TOP BAR ===== */
+.top-bar {
+    background: #111;
+    border-bottom: 4px solid #b30000;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    .dash-box {
-        width: 260px;
-        background: #111;
-        border: 2px solid #550000;
-        padding: 15px;
-        box-shadow: 0 0 10px #200;
-    }
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-    .dash-title {
-        color: #ff4444;
-        font-size: 16px;
-        margin-bottom: 8px;
-        text-shadow: 0 0 4px #ff0000;
-    }
+.logo-box {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #b30000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #b30000;
+}
 
-    /* DOCUMENT FRAME */
-    .doc-frame {
-        width: 70%;
-        margin: 0 auto;
-        background: #0f0f0f;
-        border: 3px solid #550000;
-        padding: 25px;
-        box-shadow: 0 0 20px #200;
-    }
+.top-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 
-    .doc-header {
-        font-size: 18px;
-        color: #ff4444;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #550000;
-        padding-bottom: 5px;
-    }
+.top-right {
+    font-size: 12px;
+    text-align: right;
+    color: #aaa;
+}
 
-    .redacted {
-        background: #550000;
-        color: #550000;
-        padding: 2px 6px;
-        border-radius: 3px;
-    }
+/* ===== MAIN LAYOUT ===== */
+.main {
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    gap: 20px;
+    padding: 20px 30px 40px 30px;
+}
 
-    /* TERMINAL */
-    #terminal {
-        width: 100%;
-        height: 350px;
-        background: black;
-        color: #00ff99;
-        padding: 10px;
-        overflow-y: auto;
-        border: 2px solid #222;
-        font-size: 15px;
-        margin-top: 10px;
-        box-shadow: inset 0 0 10px #000;
-    }
+/* ===== LEFT NAV / SIDEBAR ===== */
+.sidebar {
+    background: #151515;
+    border: 2px solid #333;
+    padding: 15px;
+}
 
-    #input {
-        width: 100%;
-        padding: 10px;
-        background: #111;
-        border: 2px solid #550000;
-        color: #00ff99;
-        font-size: 15px;
-        margin-top: 10px;
-    }
+.sidebar-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #ff5555;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
 
-    /* DISCLAIMER */
-    .disclaimer {
-        text-align: center;
-        color: #777;
-        font-size: 12px;
-        margin-top: 40px;
-        margin-bottom: 20px;
-    }
+.nav-section {
+    margin-bottom: 15px;
+}
+
+.nav-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.nav-link {
+    display: block;
+    font-size: 13px;
+    padding: 4px 0;
+    color: #ddd;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #ff5555;
+}
+
+/* ===== RIGHT PANEL ===== */
+.right-panel {
+    background: #151515;
+    border: 2px solid #333;
+    padding: 15px;
+}
+
+.panel-block {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.panel-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ff5555;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+}
+
+.redacted {
+    background: #b30000;
+    color: #b30000;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+/* ===== CENTER CONTENT ===== */
+.center {
+    background: #141414;
+    border: 2px solid #333;
+    padding: 20px;
+}
+
+/* SCP-style header */
+.scp-header {
+    border-bottom: 2px solid #b30000;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.scp-code {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.scp-class {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #ff5555;
+    margin-top: 3px;
+}
+
+.scp-meta {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* Tabs */
+.tab-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.tab {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    background: #181818;
+    cursor: pointer;
+}
+
+.tab.active {
+    border-color: #b30000;
+    color: #ff5555;
+}
+
+/* Tab content */
+.tab-content {
+    display: none;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #ff5555;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* Info grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.info-box {
+    border: 1px solid #333;
+    padding: 8px;
+    font-size: 12px;
+}
+
+/* Faux terminal (non-interactive) */
+.terminal-frame {
+    margin-top: 10px;
+    border: 1px solid #333;
+    background: #050505;
+    padding: 8px;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    color: #00ff99;
+    height: 160px;
+    overflow-y: auto;
+}
+
+/* Footer disclaimer */
+.footer {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    padding: 10px 0 20px 0;
+}
 </style>
 </head>
 
 <body>
 
-<div class="banner">C O G U A R D — F I C T I O N A L   A C C E S S   T E R M I N A L</div>
-
-<!-- DASHBOARD -->
-<div class="dashboard">
-    <div class="dash-box">
-        <div class="dash-title">SYSTEM STATUS</div>
-        CORE: ONLINE<br>
-        UI: ACTIVE<br>
-        REDACTION: ENABLED<br>
-        MODE: FICTIONAL<br>
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="top-left">
+        <div class="logo-box">C</div>
+        <div class="top-title">COGUARD INTERFACE — CLASSIFIED CONTROL HUB</div>
     </div>
-
-    <div class="dash-box">
-        <div class="dash-title">ACCESS LEVEL</div>
-        Clearance: <span class="redacted">██</span><br>
-        Verification: PASS<br>
-        Restrictions: SAFE‑USE<br>
+    <div class="top-right">
+        PROJECT: FICTIONAL UI<br>
+        ACCESS: STUDENT SANDBOX
     </div>
 </div>
 
-<!-- DOCUMENT FRAME -->
-<div class="doc-frame">
-    <div class="doc-header">CLASSIFIED TERMINAL — DOCUMENT FRAME</div>
+<!-- MAIN LAYOUT -->
+<div class="main">
 
-    <div id="terminal"></div>
-    <input id="input" placeholder="Enter command…">
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-title">Navigation</div>
+
+        <div class="nav-section">
+            <div class="nav-label">Core</div>
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="services.html">Services</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-label">Internal</div>
+            <span class="nav-link">Terminal Hub</span>
+            <span class="nav-link"><span class="redacted">████████</span></span>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-label">Status</div>
+            <span class="nav-link">UI: Stable</span>
+            <span class="nav-link">Mode: Fictional</span>
+        </div>
+    </div>
+
+    <!-- CENTER CONTENT -->
+    <div class="center">
+        <!-- SCP-STYLE HEADER -->
+        <div class="scp-header">
+            <div class="scp-code">COGUARD CONTROL NODE</div>
+            <div class="scp-class">Interface Classification: INTERNAL / FICTIONAL</div>
+            <div class="scp-meta">
+                Document Type: UI Overview • Revision: 3.1.3 • Access Level: <span class="redacted">██</span>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tab-bar">
+            <div class="tab active" data-tab="overview">Overview</div>
+            <div class="tab" data-tab="systems">Systems</div>
+            <div class="tab" data-tab="terminal">Terminal View</div>
+        </div>
+
+        <!-- TAB: OVERVIEW -->
+        <div class="tab-content active" id="tab-overview">
+            <div class="section-title">Description</div>
+            <p>
+                The Coguard Interface is a fictional control hub designed as a clean, SCP‑style dashboard.
+                All elements on this page are purely visual and for creative purposes only.
+            </p>
+
+            <div class="section-title">Summary</div>
+            <div class="info-grid">
+                <div class="info-box">
+                    <strong>Core Status:</strong><br>
+                    ONLINE<br>
+                    UI Modules: ACTIVE<br>
+                    Redaction Layer: ENABLED
+                </div>
+                <div class="info-box">
+                    <strong>Access Notes:</strong><br>
+                    Clearance: <span class="redacted">██</span><br>
+                    Scope: Student Project<br>
+                    Risk: None (Fictional)
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: SYSTEMS -->
+        <div class="tab-content" id="tab-systems">
+            <div class="section-title">Subsystem Overview</div>
+            <div class="info-grid">
+                <div class="info-box">
+                    <strong>Visual Layer</strong><br>
+                    Theme: SCP‑inspired<br>
+                    Layout: Dashboard + Document<br>
+                    Behavior: Static / Non‑harmful
+                </div>
+                <div class="info-box">
+                    <strong>Interaction Layer</strong><br>
+                    Terminal: Faux (non‑interactive)<br>
+                    Scripts: Minimal<br>
+                    Purpose: Display only
+                </div>
+            </div>
+
+            <div class="section-title">Redaction Profile</div>
+            <p>
+                Certain labels and identifiers are intentionally obscured using redaction blocks
+                (<span class="redacted">████</span>) to reinforce the SCP‑style aesthetic while keeping
+                all content safe and fictional.
+            </p>
+        </div>
+
+        <!-- TAB: TERMINAL VIEW -->
+        <div class="tab-content" id="tab-terminal">
+            <div class="section-title">Faux Terminal Output</div>
+            <div class="terminal-frame" id="terminal">
+                > INITIALIZING COGUARD INTERFACE...<br>
+                > LOADING DASHBOARD MODULES...<br>
+                > APPLYING REDACTION LAYER...<br>
+                > STATUS: ALL SYSTEMS STABLE (FICTIONAL MODE).<br>
+                ><br>
+                > NOTE: THIS TERMINAL IS DISPLAY‑ONLY. NO REAL COMMANDS ARE EXECUTED.<br>
+                ><br>
+                > LOG 01: USER INTERFACE ONLINE.<br>
+                > LOG 02: ACCESS LEVEL <span class="redacted">██</span> VISUALIZED.<br>
+                > LOG 03: SCP‑STYLE AESTHETIC APPLIED CLEANLY.<br>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+        <div class="panel-block">
+            <div class="panel-title">Session Info</div>
+            User: <span class="redacted">██████</span><br>
+            Node: COGUARD‑TERM<br>
+            Mode: VIEW‑ONLY<br>
+        </div>
+
+        <div class="panel-block">
+            <div class="panel-title">UI Integrity</div>
+            Layout: NEAT<br>
+            Style: SCP‑Inspired<br>
+            Scripts: Minimal<br>
+            Risk: NONE<br>
+        </div>
+
+        <div class="panel-block">
+            <div class="panel-title">Notes</div>
+            This page is intentionally designed to resemble an SCP‑style control/document interface
+            while remaining safe, static, and purely fictional.
+        </div>
+    </div>
+
 </div>
 
-<div class="disclaimer">
-    This interface is a fictional, student‑made project for creative purposes only.
+<!-- FOOTER -->
+<div class="footer">
+    This interface is a fictional, student‑made project inspired by SCP‑style layouts. It does not
+    represent real systems, threats, or operations.
 </div>
 
 <script>
-const terminal = document.getElementById("terminal");
-const input = document.getElementById("input");
+/* Simple tab switching, no spammy behavior */
+const tabs = document.querySelectorAll(".tab");
+const contents = {
+    overview: document.getElementById("tab-overview"),
+    systems: document.getElementById("tab-systems"),
+    terminal: document.getElementById("tab-terminal")
+};
 
-function print(text) {
-    terminal.innerHTML += text + "<br>";
-    terminal.scrollTop = terminal.scrollHeight;
-}
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
 
-input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        const cmd = input.value.trim();
-        print("> " + cmd);
-
-        if (cmd === "help") {
-            print("Commands:");
-            print("- help");
-            print("- clear");
-            print("- status");
-            print("- redacted");
-        }
-        else if (cmd === "clear") {
-            terminal.innerHTML = "";
-        }
-        else if (cmd === "status") {
-            print("SYSTEM STATUS: All fictional modules operational.");
-        }
-        else if (cmd === "redacted") {
-            print("<span class='redacted'>███████████████████</span>");
-        }
-        else {
-            print("Unknown command.");
-        }
-
-        input.value = "";
-    }
+        Object.values(contents).forEach(c => c.classList.remove("active"));
+        const key = tab.getAttribute("data-tab");
+        contents[key].classList.add("active");
+    });
 });
 </script>
 
