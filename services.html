@@ -39,8 +39,25 @@
             padding: 15px;
             margin-top: 40px;
         }
-        ul {
-            line-height: 1.8;
+        .request-button {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .request-button:hover {
+            background: #0056b3;
+        }
+        .issue-box {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 5px solid #007bff;
         }
     </style>
 </head>
@@ -61,22 +78,47 @@
     <h2>Professional Protection Services</h2>
     <p>Coguard Inc. provides a range of private security and bodyguard services designed to maintain safety, awareness, and preparedness in any environment.</p>
 
-    <h2>What We Offer</h2>
-    <ul>
-        <li>Personal bodyguard protection</li>
-        <li>Event and venue security</li>
-        <li>Escort and close‑protection services</li>
-        <li>Emergency response and threat monitoring</li>
-        <li>Access control and perimeter observation</li>
-    </ul>
+    <h2>Submit a Service Request</h2>
+    <a class="request-button" href="https://github.com/scpwizzard-rgb/scpwizzard-rgb.github.io/issues/new" target="_blank">
+        Submit a Request
+    </a>
 
-    <h2>Our Approach</h2>
-    <p>We operate with professionalism, confidentiality, and responsibility. Every service is tailored to meet the needs of the environment and the individuals we protect.</p>
+    <h2>Public Requests</h2>
+    <div id="issues">Loading requests...</div>
 </div>
 
 <footer>
     <p>© 2026 Coguard Inc.</p>
 </footer>
+
+<script>
+    // Fetch GitHub Issues and display them
+    fetch("https://api.github.com/repos/scpwizzard-rgb/scpwizzard-rgb.github.io/issues")
+        .then(response => response.json())
+        .then(issues => {
+            const container = document.getElementById("issues");
+            container.innerHTML = "";
+
+            if (issues.length === 0) {
+                container.innerHTML = "<p>No requests yet.</p>";
+                return;
+            }
+
+            issues.forEach(issue => {
+                const box = document.createElement("div");
+                box.className = "issue-box";
+                box.innerHTML = `
+                    <h3>#${issue.number}: ${issue.title}</h3>
+                    <p>${issue.body || "No description provided."}</p>
+                    <a href="${issue.html_url}" target="_blank">View on GitHub</a>
+                `;
+                container.appendChild(box);
+            });
+        })
+        .catch(error => {
+            document.getElementById("issues").innerHTML = "<p>Error loading requests.</p>";
+        });
+</script>
 
 </body>
 </html>
